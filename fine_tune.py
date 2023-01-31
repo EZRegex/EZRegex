@@ -1,41 +1,73 @@
 import openai
 
+import math
+import time
+
 with open('openai_key.txt') as f:
-    API_TOKEN = f.readline()
+  API_TOKEN = f.readline()
 
 openai.api_key= API_TOKEN
 
 
+input = "NNN-NN-NNNN"
 
-p = """
-text: "A valid URL with http/https"
-regex: https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)
-###
-text: "SSN"
-regex: ^(?!0{3})(?!6{3})[0-8]\d{2}-(?!0{2})\d{2}-(?!0{4})\d{4}$
-###
-text: "format NNN-NN-NNNN. Contain all zeroes in any specific group (e.g 000-##-####, ###-00-####, or ###-##-0000), Begin with 666., Begin with any value from 900-999."
-regex: ^(?!0{3})(?!6{3})[0-8]\d{2}-(?!0{2})\d{2}-(?!0{4})\d{4}$
-###
-text: "At least 8 characters, at least one character, one number, and one special character"
-regex: ^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$
-###
-text: "start with 'li' and end with 'e'"
-regex: li*e
-###
-text: "start with 'w', end with 'i'"
-regex: 
-"""
+form = [
+  f"Can you generate regular expression that represent {input}",
+  f"make a regex : {input}",
+  f"Regular expression: {input}"
+]
 
 
-response = openai.Completion.create(
-  engine="text-davinci-002",
-  prompt = p,
-  temperature=0.5,
-  max_tokens=256,
-  top_p=1.0,
-  frequency_penalty=0.0,
-  presence_penalty=0.0
-)
+tda_list = []
 
-print(response['choices'][0]['text'])
+
+
+
+
+start = time.time()
+
+
+
+for i in range(3):
+  print(form[i])
+  
+  response = openai.Completion.create(
+    engine="text-davinci-002",
+    prompt = form[i],
+    temperature=0.5,
+    max_tokens=256,
+    top_p=1.0,
+    frequency_penalty=0.0,
+    presence_penalty=0.0
+  )
+
+  output = response['choices'][0]['text']
+  
+  print(output, "\n\n")
+
+  tda_list.append(output)
+
+
+
+
+# Program to find most frequent
+# element in a list
+def most_frequent(List):
+  return max(set(List), key = List.count)
+ 
+
+
+print(tda_list)
+
+
+print(most_frequent(tda_list))
+
+
+
+
+
+
+math.factorial(100000)
+end = time.time()
+
+print(f"\n\n\n{end - start:.5f} sec")
