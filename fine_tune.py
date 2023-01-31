@@ -3,25 +3,47 @@ import openai
 import math
 import time
 
+
+
+
+# Program to find most frequent
+# element in a list
+def most_frequent(List):
+  return max(set(List), key = List.count)
+
+def delete_slash(text):
+  if text[0] == '/' and text[-1] == '/':
+    return text[1:-1]
+  else:
+    return text
+
+
+
+    
+
 with open('openai_key.txt') as f:
   API_TOKEN = f.readline()
 
 openai.api_key= API_TOKEN
 
 
-input = "NNN-NN-NNNN"
+input = "word betwween l to i"
 
 form = [
-  f"Can you generate regular expression that represent {input} ?",
-  f"make a regex : {input}",
-  f"Regular expression: {input}",
-  f"I want to know the regular expression for {input}",
-  f"Tell me the regular expression that extracts {input}",
-  f"Find a regular expression of the {input}"
+  f"Generate regular expression\n\ninput :{input}\noutput:",
+  f"Give me regular expression of {input}.",
+  f"Make regex to match {input}",
 ]
 
 
+# f"Can you generate regular expression that represent {input} ? without any explaination",
+# f"Regular expression: {input}\nplease give me just regex.",
+# f"let me know just a regular expression of the {input}",
+# f"I want only regex of {input}",
+# f"Can you make regular expression representing: {input}"
+
 tda_list = []
+
 
 
 start = time.time()
@@ -31,9 +53,9 @@ start = time.time()
 for i in range(len(form)):
   
   response = openai.Completion.create(
-    engine="text-davinci-002",
+    engine="text-davinci-003",
     prompt = form[i],
-    temperature=0.5,
+    temperature=0.3,
     max_tokens=256,
     top_p=1.0,
     frequency_penalty=0.0,
@@ -41,30 +63,33 @@ for i in range(len(form)):
   )
 
   output = response['choices'][0]['text']
+  output = output.replace("\n", "")
+  output = output.replace(" ", "")
+  output = delete_slash(output)
 
+  print("\n------------ form ------------\n")
   print(form[i])
-  print(output, "\n\n")
+
+  print("\n------------ output ------------")
+  print(output)
 
   tda_list.append(output)
 
-
-
-
-# Program to find most frequent
-# element in a list
-def most_frequent(List):
-  return max(set(List), key = List.count)
  
 
-
-print(tda_list)
-
+output = most_frequent(tda_list)
 
 
-print("Most Frequent Answer is : ")
-print(most_frequent(tda_list))
+print(f"\n\nAnswer list : {tda_list.count(output)}")
+print(*tda_list[:len(form)], sep='\n')
 
 
+print(f"\n\nMost Frequent Answer is : {tda_list.count(output)}")
+
+if tda_list.count(output) == 1 :
+  print("\n\n다시 하자")
+else:
+  print(output)
 
 
 
@@ -72,11 +97,4 @@ print(most_frequent(tda_list))
 math.factorial(100000)
 end = time.time()
 
-print(f"\n\n\n{end - start:.5f} sec")
-
-
-
-
-
-
-
+print(f"\n\n{end - start:.5f} sec")
