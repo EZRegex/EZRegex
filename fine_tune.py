@@ -27,7 +27,7 @@ with open('openai_key.txt') as f:
 openai.api_key= API_TOKEN
 
 
-input = "word betwween l to i"
+input = "+82 10-NNNN-NNNN"
 
 form = [
   f"Generate regular expression\n\ninput :{input}\noutput:",
@@ -98,3 +98,42 @@ math.factorial(100000)
 end = time.time()
 
 print(f"\n\n{end - start:.5f} sec")
+
+
+
+
+new_p = f"Can you make some examples with regex: {output}\nmatched and not matched. each 3"
+
+response = openai.Completion.create(
+    engine="text-davinci-003",
+    prompt = new_p,
+    temperature=0.3,
+    max_tokens=256,
+    top_p=1.0,
+    frequency_penalty=0.0,
+    presence_penalty=0.0
+  )
+
+new_output = response['choices'][0]['text']
+
+print(new_output)
+
+
+
+
+
+new_p = f"Can you explain this regex: {output}\n"
+
+response = openai.Completion.create(
+    engine="text-davinci-003",
+    prompt = new_p,
+    temperature=0.3,
+    max_tokens=256,
+    top_p=1.0,
+    frequency_penalty=0.0,
+    presence_penalty=0.0
+  )
+
+new_output = response['choices'][0]['text']
+
+print(new_output, "\n'n")
