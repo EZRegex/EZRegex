@@ -140,3 +140,7 @@ response = openai.Completion.create(
 new_output = response['choices'][0]['text']
 
 print(new_output, "\n'n")
+
+fout = open ("./../dataset/outpu.txt", "w")
+fout.write(new_output)
+fout.close()
