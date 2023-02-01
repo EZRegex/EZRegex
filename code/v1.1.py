@@ -2,8 +2,9 @@ import openai
 
 import math
 import time
-
-
+import pandas as pd
+import numpy as np
+import sys
 
 
 # Program to find most frequent
@@ -26,8 +27,10 @@ with open('openai_key.txt') as f:
 
 openai.api_key= API_TOKEN
 
+f = open("./../dataset/input.txt", 'r')
+input =f.read()
 
-input = "+82 10-NNNN-NNNN"
+f.close()
 
 form = [
   f"Generate regular expression\n\ninput :{input}\noutput:",
@@ -51,7 +54,7 @@ start = time.time()
 
 
 for i in range(len(form)):
-  
+
   response = openai.Completion.create(
     engine="text-davinci-003",
     prompt = form[i],
@@ -75,7 +78,7 @@ for i in range(len(form)):
 
   tda_list.append(output)
 
- 
+
 
 output = most_frequent(tda_list)
 
