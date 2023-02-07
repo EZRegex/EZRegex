@@ -11,25 +11,20 @@ with open('openai_key.txt') as f:
 openai.api_key= API_TOKEN
 
 
-extract_from = "https://learn.microsoft.com/en-us/"
-extract_what = "every word in tag <table>"
-transform = "if that word is /^l.*y$/"
-load = "Azure"
-
+extract_from = "input_g.csv"
+extract_what = "all the data"
+transform = "remove '$' in sales, and remove comma in sales, make a graph. x=year, y=sales"
+load = "output.png"
 
 
 p = f"""
 Can you make ETL Python code?
-
 Extract from:
 {extract_from}
-
 Extract what:
 {extract_what}
-
 Transform:
 {transform}
-
 Load:
 {load}
 """
