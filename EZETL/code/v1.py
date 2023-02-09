@@ -1,5 +1,4 @@
 import openai
-
 import math
 import time
 
@@ -11,7 +10,7 @@ with open('openai_key.txt') as f:
 openai.api_key= API_TOKEN
 
 
-extract_from = "input_g.csv"
+extract_form = "input_g.csv"
 extract_what = "all the data"
 transform = "remove '$' in sales, and remove comma in sales, make a graph. x=year, y=sales"
 load = "output.png"
