@@ -1,4 +1,4 @@
-﻿# Technical Spec**
+﻿# Technical Spec
 
 Team 4, EZRegex Date : FEB, 8, 2023 
 
@@ -8,13 +8,13 @@ If you are not familiar with regular expressions, you can still generate pattern
 
 2. **Functionality & Advantages**
 
-Key Feature![](Technical_Spec/Aspose.Words.6b4c4e90-2c7d-4b7f-9e91-f2f7f0e02a35.001.png)
+## Key Feature![](Technical_Spec/Aspose.Words.6b4c4e90-2c7d-4b7f-9e91-f2f7f0e02a35.001.png)
 
 EZRegex is Regex generator tool that also includes ETL (Extract, Transform, Load) functions, can be a very useful tool for working with text data. This is very easy to use, use input that what certain regex did user wants, then input comes out the result(regex). Also in ETL process, input the text that would be applied regex, and the word that you want to change, then output is the text that changed with the word that you input.
 
 ![](Technical_Spec/Aspose.Words.6b4c4e90-2c7d-4b7f-9e91-f2f7f0e02a35.002.png)
 
-Advantages![](Technical_Spec/Aspose.Words.6b4c4e90-2c7d-4b7f-9e91-f2f7f0e02a35.003.png)
+## Advantages![](Technical_Spec/Aspose.Words.6b4c4e90-2c7d-4b7f-9e91-f2f7f0e02a35.003.png)
 
 The combination of regex and ETL capabilities can allow you to automate many text processing tasks, such as:
 
