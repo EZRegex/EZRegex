@@ -1,4 +1,4 @@
-﻿**Technical Spec**
+﻿# Technical Spec**
 
 Team 4, EZRegex Date : FEB, 8, 2023 
 
